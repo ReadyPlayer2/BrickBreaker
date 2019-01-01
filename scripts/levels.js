@@ -1,4 +1,5 @@
 import Brick from "./brick.js";
+import { BRICK_WIDTH, BRICK_HEIGHT } from "./brick.js";
 
 export function buildLevel(game, level) {
     let bricks = [];
@@ -8,8 +9,8 @@ export function buildLevel(game, level) {
             if (brick === 1) {
 
                 let position = {
-                    x: 80 * brickIndex,
-                    y: 75 + 30 * rowIndex
+                    x: BRICK_WIDTH * brickIndex,
+                    y: 75 + BRICK_HEIGHT * rowIndex
                 };
 
                 bricks.push(new Brick(game, position));
