@@ -6,15 +6,17 @@ export default class Ball {
 
         this.gameWidth = game.gameWidth;
         this.gameHeight = game.gameHeight;
-
         this.game = game;
+        this.size = 16;
+        this.reset();
+    }
 
+    reset() {
         this.speed = { x: 1, y: -1 };
         this.position = {
             x: 10,
             y: 400
         };
-        this.size = 16;
     }
 
     update(dt) {
@@ -26,9 +28,16 @@ export default class Ball {
             this.speed.x = -this.speed.x;
         }
 
-        // wall TOP / BOTTOM
-        if (this.position.y + this.size > this.gameHeight || this.position.y < 0) {
+        // wall TOP
+        if (this.position.y < 0) {
             this.speed.y = -this.speed.y;
+        }
+
+        // wall BOTTOM
+        if (this.position.y + this.size > this.gameHeight) {
+            // Lose a life and reset the ball to start position
+            this.game.lives--;
+            this.reset();
         }
 
         if (detectCollision(this, this.game.paddle)) {
