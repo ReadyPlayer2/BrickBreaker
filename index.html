@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Brick Breaker Game</title>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/jpeg" href="http://192.168.1.226:8080/assets/images/wargames.jpg" />
+
+        <script src="scripts/paddle.js" type="module"></script>
+    </head>
+
+    <style>
+        #gameScreen {
+            border: 1px solid black;
+        }
+        img {
+            display: none;
+        }
+    </style>
+
+    <body>
+        <img id="img_ball" src="assets/images/ball.png">
+        <img id="img_brick" src="assets/images/brick.png">
+
+        <canvas id="gameScreen" width="800" height="600"></canvas>
+
+        <script src="scripts/index.js" type="module"></script>
+    </body>
+</html>
