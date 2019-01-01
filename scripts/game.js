@@ -11,6 +11,8 @@ const GAMESTATE = {
     NEWLEVEL: 4
 };
 
+const LIVES = 3;
+
 export default class Game {
 
     constructor(gameWidth, gameHeight) {
@@ -22,7 +24,7 @@ export default class Game {
         this.ball = new Ball(this);
         this.gameObjects = [];
         this.bricks = [];
-        this.lives = 3;
+        this.lives = LIVES;
 
         this.levels = [level1, level2];
         this.currentLevel = 0;
@@ -31,12 +33,19 @@ export default class Game {
     }
 
     start() {
-        if (this.gamestate !== GAMESTATE.MENU && this.gamestate !== GAMESTATE.NEWLEVEL) {
+        if (this.gamestate !== GAMESTATE.MENU && this.gamestate !== GAMESTATE.NEWLEVEL && this.gamestate !== GAMESTATE.GAMEOVER) {
             return;
+        }
+
+        if (this.gamestate === GAMESTATE.GAMEOVER) {
+            // Reset the game
+            this.currentLevel = 0;
+            this.lives = LIVES;
         }
 
         this.bricks = buildLevel(this, this.levels[this.currentLevel]);
         this.ball.reset();
+        this.paddle.reset();
         this.gameObjects = [
             this.ball,
             this.paddle
@@ -110,6 +119,7 @@ export default class Game {
             ctx.fillStyle = "white";
             ctx.textAlign = "center";
             ctx.fillText("GAME OVER", this.gameWidth / 2, this.gameHeight / 2);
+            ctx.fillText("Press SPACEBAR to play again", this.gameWidth / 2, this.gameHeight / 2 + 100);
         }
     }
 }
