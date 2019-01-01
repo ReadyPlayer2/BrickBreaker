@@ -1,5 +1,5 @@
 # BrickBreaker
-Brick Breaker Game in pure JavaScript. That's right, no frameworks...(I think?!)
+Brick Breaker game in pure JavaScript. That's right, no frameworks...(I think?!)
 
 A little project to learn some JavaScript and git - following this tutorial: https://www.youtube.com/watch?v=3EMxBkqC4z0
 
