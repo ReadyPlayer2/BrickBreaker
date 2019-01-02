@@ -2,6 +2,7 @@ import Paddle from "./paddle.js";
 import InputHandler from "./input.js";
 import Ball from "./ball.js"
 import { buildLevel, level1, level2 } from "./levels.js"
+import Heart from "./heart.js";
 
 const GAMESTATE = {
     PAUSED: 0,
@@ -11,7 +12,7 @@ const GAMESTATE = {
     NEWLEVEL: 4
 };
 
-const LIVES = 3;
+const LIVES = 13 ;
 
 export default class Game {
 
@@ -24,6 +25,8 @@ export default class Game {
         this.ball = new Ball(this);
         this.gameObjects = [];
         this.bricks = [];
+        this.hearts = [];
+        this.initialiseHearts();
         this.lives = LIVES;
 
         this.levels = [level1, level2];
@@ -41,6 +44,7 @@ export default class Game {
             // Reset the game
             this.currentLevel = 0;
             this.lives = LIVES;
+            this.initialiseHearts();
         }
 
         this.bricks = buildLevel(this, this.levels[this.currentLevel]);
@@ -62,6 +66,13 @@ export default class Game {
         }
     }
 
+    initialiseHearts() {
+        this.hearts = [];
+        for (let i = 0; i < LIVES; i++) {
+            this.hearts.push(new Heart({x: 5 + i * 20, y: 5}));
+        }
+    }
+
     update(dt) {
         if (this.lives === 0) {
             this.gamestate = GAMESTATE.GAMEOVER;
@@ -78,15 +89,21 @@ export default class Game {
             this.start();
         }
 
-        // Join gameObjects and bricks arrays into one
+        // Join gameObjects and bricks arrays into one and update
         [...this.gameObjects, ...this.bricks].forEach(obect => obect.update(dt));
 
         // Check bricks to be deleted
         this.bricks = this.bricks.filter(brick => !brick.markedForDeletion);
+
+        // Update hearts array to be equal length of number of lives so correct number of hearts are displayed
+        this.hearts = this.hearts.slice(0, this.lives);
     }
 
     draw(ctx) {
+        // Join gameObjects and bricks arrays into one and draw
         [...this.gameObjects, ...this.bricks].forEach((object) => object.draw(ctx));
+
+
 
         if (this.gamestate === GAMESTATE.PAUSED) {
             ctx.rect(0, 0, this.gameWidth, this.gameHeight);
@@ -122,13 +139,9 @@ export default class Game {
             ctx.fillText("Press SPACEBAR to play again", this.gameWidth / 2, this.gameHeight / 2 + 100);
         }
 
-        if (this.gamestate !== GAMESTATE.GAMEOVER && this.gamestate !== GAMESTATE.MENU ) {
-            // Show the number of lives remaining on screen during gameplay (including paused)
-            ctx.font = "bold 15px Arial";
-            ctx.fillStyle = "red";
-            ctx.textAlign = "left";
-            // Top left corner
-            ctx.fillText("Lives: " + this.lives, 5 , 20);
+        if (this.gamestate !== GAMESTATE.GAMEOVER && this.gamestate !== GAMESTATE.MENU) {
+            // Hearts are drawn outside of gameObjects
+            this.hearts.forEach((object) => object.draw(ctx));
         }
     }
 }
