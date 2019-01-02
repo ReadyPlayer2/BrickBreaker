@@ -12,7 +12,7 @@ const GAMESTATE = {
     NEWLEVEL: 4
 };
 
-const LIVES = 13 ;
+const LIVES = 3 ;
 
 export default class Game {
 
