@@ -25,7 +25,6 @@ export default class Game {
         this.ball = new Ball(this);
         this.gameObjects = [];
         this.bricks = [];
-        this.hearts = [];
         this.initialiseHearts();
         this.lives = LIVES;
 
