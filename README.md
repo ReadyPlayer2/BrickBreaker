@@ -15,10 +15,10 @@ Browse to `localhost:8080` to play the game. During development a hard-refresh o
 Only tested in Chrome 71.
 
 #### Notes for noobs
-`git status`  
+`git status`    
 `git add fileName`  
-`git status`  
-`git commit -m "change comment`  
+`git commit -m "change comment"`  
 `git push -u origin master`  
+`git checkout -- fileName`
 
 ES6 Modules: Getting Started Gotchas: https://medium.com/@mattlag/es6-modules-getting-started-gotchas-2ad154f38e2e 
