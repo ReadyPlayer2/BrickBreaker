@@ -10,7 +10,7 @@ A little project to learn some JavaScript and git - following this tutorial: htt
 Host project files using http-server (`npm install http-server`) then just run `http-server` using command line in the project directory.
 
 ### Play
-Browse to `localhost:8080` to play the game. During development a hard-refersh of the webpage is often required to pick up changes.
+Browse to `localhost:8080` to play the game. During development a hard-refresh of the webpage is often required to pick up changes.
 
 Only tested in Chrome 71.
 
