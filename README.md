@@ -1,7 +1,7 @@
 # BrickBreaker
-Brick Breaker game in pure JavaScript. That's right, no frameworks...(I think?!)
+Brick Breaker game in pure JavaScript. That's right, no frameworks...(yet..)
 
-A little project to learn some JavaScript and git - following this tutorial: https://www.youtube.com/watch?v=3EMxBkqC4z0
+A little project to learn some JavaScript and git - following this tutorial: https://www.youtube.com/watch?v=3EMxBkqC4z0 and then some improvements.
 
 ### Clone
 `git clone https://github.com/ReadyPlayer2/BrickBreaker`
