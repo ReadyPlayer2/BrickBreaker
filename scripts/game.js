@@ -121,5 +121,14 @@ export default class Game {
             ctx.fillText("GAME OVER", this.gameWidth / 2, this.gameHeight / 2);
             ctx.fillText("Press SPACEBAR to play again", this.gameWidth / 2, this.gameHeight / 2 + 100);
         }
+
+        if (this.gamestate !== GAMESTATE.GAMEOVER && this.gamestate !== GAMESTATE.MENU ) {
+            // Show the number of lives remaining on screen during gameplay (including paused)
+            ctx.font = "bold 15px Arial";
+            ctx.fillStyle = "red";
+            ctx.textAlign = "left";
+            // Top left corner
+            ctx.fillText("Lives: " + this.lives, 5 , 20);
+        }
     }
 }
